@@ -1,6 +1,6 @@
 const { app, BrowserWindow, shell, ipcMain, Menu, TouchBar } = require('electron');
 const { TouchBarButton, TouchBarLabel, TouchBarSpacer } = TouchBar;
-
+const find = require('find-process');
 const path = require('path');
 const isDev = require('electron-is-dev');
 
@@ -16,12 +16,12 @@ const createWindow = () => {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            preload: __dirname + '/preload.js',
         },
         width: 1280,
         height: 720,
     });
 
+    console.log(`file://${path.join(__dirname, '../build/index.html')}`);
     mainWindow.loadURL(
         isDev
             ? 'http://localhost:3000'
@@ -60,6 +60,17 @@ const createWindow = () => {
         });
     });
 };
+
+app.on('before-quit' , (e) => {
+    find('port', 3000)
+        .then(function (list) {
+            if(list[0] != null){
+                process.kill(list[0].pid, 'SIGHUP');
+            }
+        }.catch((e) => {
+            console.log(e.stack || e);
+        }));
+});
 
 app.on('ready', () => {
     createWindow();

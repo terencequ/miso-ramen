@@ -29,7 +29,7 @@ const StyledLogoText = styled(Typography)`
 const LogoDense: FC<{style?: CSSProperties}> = ({style}) => {
 
   return <StyledLogoDenseWrap style={style}>
-    <StyledLogo src={'/images/logo.png'}/>
+    <StyledLogo src={'./images/logo.png'}/>
     <StyledLogoText variant={"h6"}>Miso Ramen</StyledLogoText>
   </StyledLogoDenseWrap>;
 };

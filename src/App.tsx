@@ -48,8 +48,6 @@ const App = () => {
   const darkMode = useAppSelector(state => state.userInterface.darkMode);
   const theme = createAppTheme(darkMode);
 
-  console.log(theme);
-
   document.title = "Oat Milk";
   const {drawerOpen, drawerMinimised} = useAppSelector(state => state.userInterface);
 

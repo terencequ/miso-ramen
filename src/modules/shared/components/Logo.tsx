@@ -29,7 +29,7 @@ const StyledLogoText = styled(Typography)`
 const Logo: FC<{style?: CSSProperties}> = ({style}) => {
 
     return <StyledLogoWrap style={style}>
-        <StyledLogo src={'/images/logo.png'}/>
+        <StyledLogo src={'./images/logo.png'}/>
         <StyledLogoText variant={"h4"}>Miso Ramen</StyledLogoText>
     </StyledLogoWrap>;
 };
