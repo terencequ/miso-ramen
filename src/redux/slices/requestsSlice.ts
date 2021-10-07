@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction, Slice} from "@reduxjs/toolkit";
 import {getFailRequest, getInitialRequest, getInProgressRequest, getSuccessRequest, Request} from "../actions/request";
 import {useAppSelector} from "../hooks";
 

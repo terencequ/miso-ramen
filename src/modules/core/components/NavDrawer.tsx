@@ -1,7 +1,7 @@
+import {Home, Settings} from "@material-ui/icons";
 import React, {FC, ReactElement} from 'react';
 import {Drawer, List, ListItem, ListItemText, Theme, Toolbar, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
-import HomeIcon from '@material-ui/icons/Home';
 import {useHistory, useLocation} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {setDrawerOpen} from "../../../redux/slices/userInterfaceSlice";
@@ -54,7 +54,7 @@ const drawerButtons: DrawerButton[] = [
   {
     path: "/",
     title: "Home",
-    icon: <HomeIcon/>
+    icon: <Home/>
   },
 ];
 
@@ -76,12 +76,6 @@ const NavDrawer: FC<NavDrawerProps> = ({anchor}) => {
       history.push(path);
     };
   };
-
-  // No app drawer if this is the login page
-  const location = useLocation();
-  if(location.pathname === '/login' || location.pathname === '/register') {
-    return <></>
-  }
 
   return <Drawer variant={"permanent"} open={drawerOpen} anchor={anchor} onClose={onToggleOpen}>
       <StyledDrawerContents>

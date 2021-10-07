@@ -1,6 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction, Slice} from "@reduxjs/toolkit";
 
-interface ThemeState {
+interface UserInterfaceState {
     darkMode: boolean;
     drawerOpen: boolean;
     drawerMinimised: boolean;
@@ -9,7 +9,7 @@ interface ThemeState {
     isLoading: boolean;
 }
 
-const initialState: ThemeState = {
+const initialState: UserInterfaceState = {
     darkMode: true,
     drawerOpen: true,
     drawerMinimised: false,

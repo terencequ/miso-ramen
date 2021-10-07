@@ -1,3 +1,6 @@
+/**
+ * This file mostly contains configuration and setup for Electron.
+ */
 const { app, BrowserWindow, shell, ipcMain, Menu, TouchBar } = require('electron');
 const { TouchBarButton, TouchBarLabel, TouchBarSpacer } = TouchBar;
 const find = require('find-process');
@@ -55,9 +58,15 @@ const createWindow = () => {
     mainWindow.once('ready-to-show', () => {
         mainWindow.show();
 
-        ipcMain.on('open-external-window', (event, arg) => {
+        mainWindow.on('open-external-window', (event, arg) => {
             shell.openExternal(arg);
         });
+    });
+    mainWindow.on('maximize', () => {
+        mainWindow.webContents.send('isMaximised-reply', BrowserWindow.getFocusedWindow().isMaximized());
+    });
+    mainWindow.on('unmaximize', () => {
+        mainWindow.webContents.send('isMaximised-reply', BrowserWindow.getFocusedWindow().isMaximized());
     });
 };
 
