@@ -1,33 +1,27 @@
 import React, {FC, MouseEvent, useState} from 'react';
-import {AppBar, IconButton, LinearProgress, Menu, MenuItem, Toolbar} from "@material-ui/core";
+import {AppBar, IconButton, LinearProgress, Menu, Toolbar} from "@material-ui/core";
 import styled from "@emotion/styled";
 
 import MenuIcon from '@material-ui/icons/Menu';
 import SettingsIcon from "@material-ui/icons/Settings";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {useLocation} from "react-router-dom";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {themeSpacing} from "../styles/GlobalStyles";
 import {setDrawerMinimised} from "../../../redux/slices/userInterfaceSlice";
 import LogoDense from "../../shared/components/LogoDense";
+import WindowBar from "./WindowBar";
 
 const StyledAppBar = styled(AppBar)`
-  padding: 0 ${themeSpacing(2)}; // This should be lined up with icons from NavDrawer
   width: 100vw;
+`
+
+const StyledToolbar = styled(Toolbar)`
+  padding: 0 ${themeSpacing(2)};
 `
 
 const StyledSettingsWrap = styled.div`
   margin-left: auto;
-  margin-right: ${themeSpacing(2)};
-`;
-
-const StyledListItemIcon = styled.div`
-  margin-right: 0.5vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const StyledLinearProgress = styled(LinearProgress)`
@@ -57,24 +51,22 @@ const NavBar: FC = () => {
     setSettingsOpen(false);
   };
 
-  // No app bar if this is the login page
-  const location = useLocation();
-
   return <StyledAppBar sx={{zIndex: (theme) => theme.zIndex.drawer + 1}} position="sticky">
-    <Toolbar disableGutters>
-      <IconButton onClick={handleToggleLeftDrawer}>
-        <MenuIcon/>
-      </IconButton>
-      <LogoDense style={{marginLeft: "10px"}}/>
-      <StyledSettingsWrap>
-        <IconButton onClick={handleOpenSettings}><SettingsIcon/></IconButton>
-        <Menu open={settingsOpen} anchorEl={settingsAnchor} onClose={handleCloseSettings}>
-          <MenuItemThemeButton/>
-        </Menu>
-      </StyledSettingsWrap>
-      {isLoading && <StyledLinearProgress color={"secondary"} variant={"indeterminate"}/>}
-    </Toolbar>
-  </StyledAppBar>;
+      <WindowBar/>
+      <StyledToolbar disableGutters>
+        <IconButton onClick={handleToggleLeftDrawer}>
+          <MenuIcon/>
+        </IconButton>
+        <LogoDense style={{marginLeft: "10px"}}/>
+        <StyledSettingsWrap>
+          <IconButton onClick={handleOpenSettings}><SettingsIcon/></IconButton>
+          <Menu open={settingsOpen} anchorEl={settingsAnchor} onClose={handleCloseSettings}>
+            <MenuItemThemeButton/>
+          </Menu>
+        </StyledSettingsWrap>
+        {isLoading && <StyledLinearProgress color={"secondary"} variant={"indeterminate"}/>}
+      </StyledToolbar>
+    </StyledAppBar>;
 }
 
 export default NavBar;

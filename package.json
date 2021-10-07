@@ -2,7 +2,10 @@
   "name": "miso-ramen",
   "version": "1.0.0",
   "private": true,
+  "main": "public/main.js",
+  "homepage": "./",
   "dependencies": {
+    "@electron/remote": "^2.0.1",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@material-ui/core": "^5.0.0-beta.2",
@@ -29,10 +32,11 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "start:prod": "env-cmd -f .env.prod react-scripts start",
+    "dev": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "build:prod": "env-cmd -f .env.prod npm run build",
+    "start": "concurrently \"cross-env BROWSER=none npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
   },
@@ -57,7 +61,28 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.8",
     "babel-plugin-import": "^1.13.3",
+    "concurrently": "^6.3.0",
+    "cross-env": "^7.0.3",
     "customize-cra": "^1.0.0",
-    "react-app-rewired": "^2.1.8"
+    "electron": "^15.1.1",
+    "electron-builder": "^22.11.7",
+    "electron-devtools-installer": "^3.2.0",
+    "electron-is-dev": "^2.0.0",
+    "react-app-rewired": "^2.1.8",
+    "wait-on": "^6.0.0"
+  },
+  "build": {
+    "appId": "com.terencequ.misoramen",
+    "compression": "normal",
+    "productName": "Miso Ramen",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "public/win-logo.ico"
+    },
+    "extends": null
   }
 }

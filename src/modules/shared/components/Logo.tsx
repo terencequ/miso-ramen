@@ -7,6 +7,12 @@ const StyledLogoWrap = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 const StyledLogo = styled.img`
