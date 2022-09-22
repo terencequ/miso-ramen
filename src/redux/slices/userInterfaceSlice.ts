@@ -22,22 +22,22 @@ export const userInterfaceSlice = createSlice({
     name: 'userInterface',
     initialState,
     reducers: {
-        setDarkMode: (state, action: PayloadAction<boolean>) => {
+        setDarkMode: (state: UserInterfaceState, action: PayloadAction<boolean>) => {
             state.darkMode = action.payload;
         },
-        setDrawerOpen: (state, action: PayloadAction<boolean>) => {
+        setDrawerOpen: (state: UserInterfaceState, action: PayloadAction<boolean>) => {
             state.drawerOpen = action.payload;
         },
-        setDrawerMinimised: (state, action: PayloadAction<boolean>) => {
+        setDrawerMinimised: (state: UserInterfaceState, action: PayloadAction<boolean>) => {
             state.drawerMinimised = action.payload;
         },
-        setAppBarTitle: (state, action: PayloadAction<string>) => {
+        setAppBarTitle: (state: UserInterfaceState, action: PayloadAction<string>) => {
             state.appBarTitle = action.payload;
         },
-        setBackground: (state, action: PayloadAction<string>) => {
+        setBackground: (state: UserInterfaceState, action: PayloadAction<string>) => {
             state.currentBackground = action.payload;
         },
-        setLoading: (state, action: PayloadAction<boolean>) => {
+        setLoading: (state: UserInterfaceState, action: PayloadAction<boolean>) => {
             state.isLoading = action.payload;
         }
     }

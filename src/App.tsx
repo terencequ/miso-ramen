@@ -2,7 +2,6 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import './App.css';
 import NavBar from "./modules/core/components/NavBar";
-import HomePage from "./modules/instagram/pages/HomePage";
 import {CssBaseline} from "@material-ui/core";
 import {Theme, ThemeProvider} from "@material-ui/core/styles";
 import styled from "@emotion/styled";
@@ -60,7 +59,6 @@ const App = () => {
           <StyledBody drawerOpen={drawerOpen} drawerMinimised={drawerMinimised}>
             <Switch>
               <Route path={"/"}>
-                <HomePage/>
               </Route>
             </Switch>
           </StyledBody>
